@@ -1,0 +1,17 @@
+gensim==3.6.0
+vosk
+torch
+rouge-score
+nltk
+transformers
+scikit-learn
+yt_dlp
+pydub
+vosk
+ffmpeg
+moviepy
+summa
+pyarabic
+sumy
+arabic-reshaper
+python-bidi
