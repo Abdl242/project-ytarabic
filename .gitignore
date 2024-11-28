@@ -24,7 +24,7 @@ mlruns
 # IDE #
 *.vscode
 .env
-
+.mp3
 # Specific Challenges
 06-Deep-Learning/03-Convolutional-Neural-Networks/04-Transfer-Learning/flowers/
 
