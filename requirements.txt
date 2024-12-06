@@ -15,3 +15,4 @@ pyarabic
 sumy
 arabic-reshaper
 python-bidi
+md2notion
