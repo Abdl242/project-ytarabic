@@ -40,16 +40,18 @@ from toicloud import save_to_local_icloud
 if __name__=="__main__":
 
     while True:
-        print("Please paste your playlist URL : ")
-        pl_url=input()
+        print("Please paste your  URL : ")
+        web_url=input()
 
-        playlist_name, video_urls = get_playlist_details(pl_url)
+        #playlist_name, video_urls = get_playlist_details(web_url)
 
-        for video in video_urls:
-            print(f"Processing video {video}")
-            video_title,transcript_test = youtube_main(video)
-            summary = application_gpt(transcript_test,client_gpt)
 
-            parse_to_markdown(f"data/{playlist_name}/{video_title}",summary)
-            to_notion(f"data/{playlist_name}/{video_title}.md",NOTION_PATH[playlist_name],video_title)
-            save_to_local_icloud(f"data/{playlist_name}/{video_title}.md")
+        print(f"Processing video {web_url}")
+        video_title,transcript_test = youtube_main(web_url)
+        summary = application_gpt(transcript_test,client_gpt)
+
+
+
+        # parse_to_markdown(f"data/{playlist_name}/{video_title}",summary)
+        # to_notion(f"data/{playlist_name}/{video_title}.md",NOTION_PATH[playlist_name],video_title)
+        # save_to_local_icloud(f"data/{playlist_name}/{video_title}.md")
