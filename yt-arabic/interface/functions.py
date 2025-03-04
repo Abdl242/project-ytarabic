@@ -86,7 +86,7 @@ def voice_recognition(filename,language):
     return transcript
 
 
-def youtube_main(yt_url):
+def youtube_main(yt_url,playlist_name):
     # Define the output file name
 
 
@@ -103,13 +103,17 @@ def youtube_main(yt_url):
         }],
     }
 
+
+
     with YoutubeDL(ydl_opts) as ydl:
         ydl.download([yt_url])
         info_dict = ydl.extract_info(yt_url, download=False)
         video_title = info_dict.get('title', None).replace("/","")
 
     print(f'Audio has been saved as {audio_output}')
-
+    # if f"data/raw_text/{video_title}kkkpkpk.txt":
+    #     print(f"{video_title} has been processed already")
+    #else:
     client = translate.Client()
     response = client.detect_language(video_title)
     language= response['language']

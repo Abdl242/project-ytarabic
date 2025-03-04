@@ -7,9 +7,9 @@ from transformers import pipeline
 from pydub import AudioSegment
 import json
 from google.cloud import translate_v2 as translate
-
+import time
 from yt_dlp import YoutubeDL
-
+from os import sys
 #from moviepy.editor import VideoFileClip
 from vosk import Model, KaldiRecognizer
 import openai
@@ -37,19 +37,40 @@ from tonotion import to_notion
 from toicloud import save_to_local_icloud
 
 
-if __name__=="__main__":
-
+def main(playlist_url):
     while True:
-        print("Please paste your playlist URL : ")
-        pl_url=input()
 
-        playlist_name, video_urls = get_playlist_details(pl_url)
+
+        #print("Please paste your playlist URL : ")
+        #pl_url=input()
+
+        playlist_name, video_urls = get_playlist_details(playlist_url)
 
         for video in video_urls:
+
+
             print(f"Processing video {video}")
-            video_title,transcript_test = youtube_main(video)
+
+
+
+            print("Start conversion")
+
+            video_title,transcript_test = youtube_main(video,playlist_name)
+
+
             summary = application_gpt(transcript_test,client_gpt)
 
             parse_to_markdown(f"data/{playlist_name}/{video_title}",summary)
             to_notion(f"data/{playlist_name}/{video_title}.md",NOTION_PATH[playlist_name],video_title)
             save_to_local_icloud(f"data/{playlist_name}/{video_title}.md")
+
+
+
+
+if __name__=="__main__":
+
+    if len(sys.argv) > 1:
+        main(sys.argv[1])
+
+    else:
+        print("No playlist given")

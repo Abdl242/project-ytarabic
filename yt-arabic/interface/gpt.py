@@ -42,7 +42,7 @@ def application_gpt(text,client):
     7. **List all the sources**
     8. Provide tags
 
-    The output should be in english only
+    The output should be in arabic only
 
     Ensure the rewritten text is clear, engaging, and easy to read. You may add clarifying details to enhance understanding but stay true to the original message.
     Return it in json format as {"summary":}
